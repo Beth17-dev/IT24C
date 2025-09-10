@@ -2,7 +2,7 @@
 
 console.log("My Activity in Life JavaScript");
 
-let fullname = "Janeza P. Malaya";
+let fullname = "April Beth P. Salapang";
 let course = "Bachelor of Science in Information Technology";
 let yearlevel = "2nd year";
 
@@ -12,14 +12,14 @@ console.log("Student Name: " + fullname + "\nCourse: " + course + "\nYear Level:
 
 console.log("My Operators Daily Routine");
 
-let hoursofsleep = 5;
-let hoursofstudy = 1;
+let hoursofsleep = 7;
+let hoursofstudy = 3;
 
 console.log("Total Hours of Sleep: " + hoursofsleep + "\nTotal Hours of Study: " + hoursofstudy);
 
 // Conditions
 
-let studyhours = 1;
+let studyhours = 3;
 
 if(studyhours > 2){
     console.log("Great! You studied enough today.");
@@ -51,7 +51,7 @@ for (let i=0;i<mysubjectthissem.length;i++){
 //Functions
 
 function studentSummary(){
-    let name = "Janeza Malaya";
+    let name = "April Beth Salapang";
     let yearlevel = "2nd year";
     let course = "Bachelor of Science in Information Technology";
 
