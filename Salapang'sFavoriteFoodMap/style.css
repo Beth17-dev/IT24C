@@ -1,0 +1,11 @@
+#map {
+    height: 501px;
+    margin: 50px;
+}
+h1 {
+    text-align: center;
+}
+.popup-image{
+    max-width: 100px;
+    height: auto;
+}
