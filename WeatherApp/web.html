@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f18dd8;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #e070a4;
+    }
+
+    button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #e070d7;
+      color: #faf8f9;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d375af;
+    }
+
+    #weatherInfo p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1> 🌤️ Weather App</h1>
+    <input id="cityInput" type="text" placeholder="Enter city name">
+    <br>
+    <button id="searchBtn">Search</button>
+    <div id="weatherInfo"></div>
+  </div>
+
+  <script>
+    // OpenWeatherMap API key
+    const apiKey = "46d2ed43c1f222b79c5be0791079faa6";
+
+    const searchBtn = document.getElementById("searchBtn");
+    const cityInput = document.getElementById("cityInput");
+    const weatherInfo = document.getElementById("weatherInfo");
+
+    // Function to fetch and display weather
+    function getWeather() {
+      const city = cityInput.value.trim();
+
+      if (!city) {
+        weatherInfo.innerHTML = "<p>Please enter a city name.</p>";
+        return;
+      }
+
+   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.cod != 200) {
+            weatherInfo.innerHTML = "<p>City not found!</p>";
+            return;
+          }
+
+        weatherInfo.innerHTML = `
+            <h2>Weather Information</h2>
+            <p><b>City:</b> ${data.name}, ${data.sys.country}</p>
+            <p>🌡️ <b>Temperature:</b> ${data.main.temp}°C</p>
+            <p>💧 <b>Humidity:</b> ${data.main.humidity}%</p>
+            <p> <b>Description:</b> ${data.weather[0].description}</p>
+          `;
+        })
+        .catch(() => {
+          weatherInfo.innerHTML = "<p>Error getting weather data.</p>";
+        });
+    }
+
+    // Event listeners
+    searchBtn.addEventListener("click", getWeather);
+    cityInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") getWeather();
+    });
+  </script>
+
+</body>
+</html>
